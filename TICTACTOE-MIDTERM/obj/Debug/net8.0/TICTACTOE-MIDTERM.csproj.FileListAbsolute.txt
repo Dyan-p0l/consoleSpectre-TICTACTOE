@@ -1,0 +1,17 @@
+C:\Users\john paul\source\repos\TICTACTOE-MIDTERM\TICTACTOE-MIDTERM\bin\Debug\net8.0\TICTACTOE-MIDTERM.exe
+C:\Users\john paul\source\repos\TICTACTOE-MIDTERM\TICTACTOE-MIDTERM\bin\Debug\net8.0\TICTACTOE-MIDTERM.deps.json
+C:\Users\john paul\source\repos\TICTACTOE-MIDTERM\TICTACTOE-MIDTERM\bin\Debug\net8.0\TICTACTOE-MIDTERM.runtimeconfig.json
+C:\Users\john paul\source\repos\TICTACTOE-MIDTERM\TICTACTOE-MIDTERM\bin\Debug\net8.0\TICTACTOE-MIDTERM.dll
+C:\Users\john paul\source\repos\TICTACTOE-MIDTERM\TICTACTOE-MIDTERM\bin\Debug\net8.0\TICTACTOE-MIDTERM.pdb
+C:\Users\john paul\source\repos\TICTACTOE-MIDTERM\TICTACTOE-MIDTERM\obj\Debug\net8.0\TICTACTOE-MIDTERM.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\john paul\source\repos\TICTACTOE-MIDTERM\TICTACTOE-MIDTERM\obj\Debug\net8.0\TICTACTOE-MIDTERM.AssemblyInfoInputs.cache
+C:\Users\john paul\source\repos\TICTACTOE-MIDTERM\TICTACTOE-MIDTERM\obj\Debug\net8.0\TICTACTOE-MIDTERM.AssemblyInfo.cs
+C:\Users\john paul\source\repos\TICTACTOE-MIDTERM\TICTACTOE-MIDTERM\obj\Debug\net8.0\TICTACTOE-MIDTERM.csproj.CoreCompileInputs.cache
+C:\Users\john paul\source\repos\TICTACTOE-MIDTERM\TICTACTOE-MIDTERM\obj\Debug\net8.0\TICTACTOE-MIDTERM.dll
+C:\Users\john paul\source\repos\TICTACTOE-MIDTERM\TICTACTOE-MIDTERM\obj\Debug\net8.0\refint\TICTACTOE-MIDTERM.dll
+C:\Users\john paul\source\repos\TICTACTOE-MIDTERM\TICTACTOE-MIDTERM\obj\Debug\net8.0\TICTACTOE-MIDTERM.pdb
+C:\Users\john paul\source\repos\TICTACTOE-MIDTERM\TICTACTOE-MIDTERM\obj\Debug\net8.0\TICTACTOE-MIDTERM.genruntimeconfig.cache
+C:\Users\john paul\source\repos\TICTACTOE-MIDTERM\TICTACTOE-MIDTERM\obj\Debug\net8.0\ref\TICTACTOE-MIDTERM.dll
+C:\Users\john paul\source\repos\TICTACTOE-MIDTERM\TICTACTOE-MIDTERM\bin\Debug\net8.0\Spectre.Console.dll
+C:\Users\john paul\source\repos\TICTACTOE-MIDTERM\TICTACTOE-MIDTERM\obj\Debug\net8.0\TICTACTOE-MIDTERM.csproj.AssemblyReference.cache
+C:\Users\john paul\source\repos\TICTACTOE-MIDTERM\TICTACTOE-MIDTERM\obj\Debug\net8.0\TICTACTO.2EBB5934.Up2Date
