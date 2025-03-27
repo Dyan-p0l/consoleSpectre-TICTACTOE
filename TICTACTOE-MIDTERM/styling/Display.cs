@@ -13,7 +13,7 @@ namespace TICTACTOE_MIDTERM.styling
                 Console.WriteLine();
             }
         }
-
+        
         public void centerSpace(string text)
         {
             int screenWidth = Console.WindowWidth;
@@ -25,6 +25,7 @@ namespace TICTACTOE_MIDTERM.styling
             if (space < 0) space = 0;
 
             AnsiConsole.Markup(new string(' ', space) + text + "\n");
+
         }
 
     }

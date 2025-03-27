@@ -24,9 +24,11 @@ namespace TICTACTOE_MIDTERM
 
             display.paddingTop();
 
-            printFormat.printCenter("==+==+==+==+==+==+==");
-            printFormat.printCenter("    TIC - TAC- TOE  ");
-            printFormat.printCenter("==+==+==+==+==+==+==");
+            AnsiConsole.Write(
+            new FigletText("TIC-TAC-TOE")
+            .Centered()
+            .Color(Color.Orange3));
+
             Console.WriteLine();
             Console.WriteLine();
             printFormat.printCenter("1.PLAY GAME");

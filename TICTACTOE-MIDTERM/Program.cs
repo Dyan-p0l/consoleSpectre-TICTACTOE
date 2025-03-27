@@ -8,6 +8,7 @@ internal class Program
     {
 
         MenuOption menuOption = new MenuOption();
+
         Menu menu = new Menu(menuOption);
 
         menuOption.SetMenu(menu);

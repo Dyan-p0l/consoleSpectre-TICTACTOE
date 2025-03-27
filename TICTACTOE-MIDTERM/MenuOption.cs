@@ -22,10 +22,28 @@ namespace TICTACTOE_MIDTERM
 
         public void howToPlay()
         {
-            printFormat.printCenter("HOW TO PLAY");
-            printFormat.printCenter("1. The game is played on a grid that's 3 squares by 3 squares.");
+            AnsiConsole.Write(
+            new FigletText("HowToPlay")
+            .Centered()
+            .Color(Color.Red3));
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            printFormat.printCenter("BASIC RULES");
+            printFormat.printCenter("------------------------------------------");
+            Console.WriteLine();
+            printFormat.printCenterRed("1. The game is played on a grid that's 3 squares by 3 squares.");
+            printFormat.printCenterRed("        2. Players take turns placing their marks (X or O) in an empty square.");
+            printFormat.printCenterRed("         3. The first player to get three of their marks in a row (horizontally,");
+            printFormat.printCenterRed("   vertically, or diagonally) wins the game.");
+            printFormat.printCenterRed("   4. If all 9 squares are filled and no player has three in a row,");
+            printFormat.printCenterRed("   the game is a draw.");
 
-            Console.Write("BACK TO MENU (PRESS ANY KEY)");
+            Console.WriteLine();
+            Console.WriteLine();
+
+            printFormat.print("BACK TO MENU (PRESS ANY KEY)");
+
             Console.ReadKey();
             Console.Clear();
             menu.displayMenu();
@@ -39,22 +57,13 @@ namespace TICTACTOE_MIDTERM
 
             Console.WriteLine();
 
-            printFormat.printCenterRed("ALLEN PAUL BELARMINO");
-            printFormat.printCenterRed("----------------------------");
-            printFormat.printCenterRed("A Computer engineering student and an");
-            printFormat.printCenterRed("aspiring software developer with a");
-            printFormat.printCenterRed("strong interest in game mechanics and");
-            printFormat.printCenterRed("innovative technologies. Constantly");
-            printFormat.printCenterRed("exploring new ways to improve gameplay.");
-
-            Console.WriteLine();
-
-            printFormat.printCenterBlue("VINCE ROSALIJOS");
-            printFormat.printCenterBlue("----------------------------");
-            printFormat.printCenterBlue("A Computer engineering student with a");
-            printFormat.printCenterBlue("passion for software development and");
-            printFormat.printCenterBlue("game mechanics. Always exploring new");
-            printFormat.printCenterBlue("technologies and innovative ideas.");
+            printFormat.printCenterGreen("ALLEN PAUL BELARMINO");
+            printFormat.printCenterGreen("----------------------------");
+            printFormat.printCenterGreen("A Computer engineering student and an");
+            printFormat.printCenterGreen("aspiring software developer with a");
+            printFormat.printCenterGreen("strong interest in game mechanics and");
+            printFormat.printCenterGreen("innovative technologies. Constantly");
+            printFormat.printCenterGreen("exploring new ways to improve gameplay.");
 
             Console.WriteLine();
 
@@ -68,9 +77,18 @@ namespace TICTACTOE_MIDTERM
             printFormat.printCenterRed("gameplay mechanics.");
 
             Console.WriteLine();
+
+            printFormat.printCenterYellow("VINCE ROSALIJOS");
+            printFormat.printCenterYellow("----------------------------");
+            printFormat.printCenterYellow("A Computer engineering student with a");
+            printFormat.printCenterYellow("passion for software development and");
+            printFormat.printCenterYellow("game mechanics. Always exploring new");
+            printFormat.printCenterYellow("technologies and innovative ideas.");
+
+            Console.WriteLine();
             Console.WriteLine();
 
-            Console.Write("BACK TO MENU (PRESS ANY KEY)");
+            printFormat.print("BACK TO MENU (PRESS ANY KEY)");
             Console.ReadKey();
             Console.Clear();
             menu.displayMenu();

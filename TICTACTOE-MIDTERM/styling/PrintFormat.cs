@@ -27,10 +27,10 @@ namespace TICTACTOE_MIDTERM.styling
             display.centerSpace(gradient.GetGradientText(text));
         }
 
-        public void printCenterBlue(string text)
+        public void printCenterYellow(string text)
         {
             Display display = new Display();
-            Gradient gradient = new Gradient(Color.LightSteelBlue1, Color.Blue1);
+            Gradient gradient = new Gradient(Color.LightYellow3, Color.Yellow1);
             display.centerSpace(gradient.GetGradientText(text));
         }
 
