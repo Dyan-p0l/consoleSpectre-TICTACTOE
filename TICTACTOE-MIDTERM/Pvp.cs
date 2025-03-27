@@ -32,20 +32,30 @@ namespace TICTACTOE_MIDTERM
             { ' ', ' ', ' ' }
         };
 
+        static string GetColoredSymbol(char symbol)
+        {
+            return symbol == 'X' ? "[cyan]X[/]" :
+                   symbol == 'O' ? "[red]O[/]" : " ";
+        }
+
         void displayBoard(string player1,string player2)
         {
-            //TABLE PARA TIC-TAC-TOE
+            
             var table = new Table();
             table.ShowRowSeparators();
             table.Title("[bold yellow]MAIN BOARD[/]");
-            table.AddColumn(board[0, 0].ToString()).AddColumn(board[0, 1].ToString()).AddColumn(board[0, 2].ToString());
+            table.AddColumn(GetColoredSymbol(board[0, 0]))
+             .AddColumn(GetColoredSymbol(board[0, 1]))
+             .AddColumn(GetColoredSymbol(board[0, 2]));
             table.BorderColor(Color.Chartreuse1);
+            table.Border(TableBorder.Double);
+            
             for (int i = 1; i < 3; i++)
             {
                 table.AddRow(
-                    board[i, 0].ToString(),
-                    board[i, 1].ToString(),
-                    board[i, 2].ToString()
+                    GetColoredSymbol(board[i, 0]),
+                    GetColoredSymbol(board[i, 1]),
+                    GetColoredSymbol(board[i, 2])
                 );
             }
 
@@ -57,15 +67,16 @@ namespace TICTACTOE_MIDTERM
             table2.BorderColor(Color.Chartreuse1);
             table2.AddRow("3", "4", "5");
             table2.AddRow("6", "7", "8");
+            table2.Border(TableBorder.Double);
 
             //SCOREBOARD KATONG NAKA BARCHART
             var scoreChart = new BarChart()
             .Width(30)
-            .Label("[green bold underline]SCOREBOARD[/]")
+            .Label("[yellow bold]SCOREBOARD[/]")
                 .CenterLabel()
-                .AddItem("GOAL SCORE", goalScore, Color.Red)
-                .AddItem(player1 + ": X", player1Score, Color.Yellow)
-                .AddItem(player2 + ": O", player2Score, Color.Green);
+                .AddItem("GOAL SCORE", goalScore, Color.Yellow1)
+                .AddItem(player1 + ": X", player1Score, Color.Cyan1)
+                .AddItem(player2 + ": O", player2Score, Color.Red1);
 
             //PARA MAUSA ANG TULO KA COMPONENT
             var grid = new Grid();
@@ -75,7 +86,7 @@ namespace TICTACTOE_MIDTERM
 
             grid.AddRow(
                 new Padder(table2).PadRight(5),  // Add spacing to the right
-                new Padder(table).PadLeft(9).PadRight(7), // Centered spacing
+                new Padder(table).PadLeft(14).PadRight(6), // Centered spacing
                 new Padder(scoreChart).PadLeft(3)
 
             );
@@ -83,7 +94,7 @@ namespace TICTACTOE_MIDTERM
             //PANEL SAME SA PANEL SA JAVA
             var panel = new Panel(grid)
             .BorderColor(Color.Blue)
-            .Border(BoxBorder.Rounded);
+            .Border(BoxBorder.Double);
 
             int screenWidth = Console.WindowWidth;
             int panelWidth = 85; // Adjust based on content width
