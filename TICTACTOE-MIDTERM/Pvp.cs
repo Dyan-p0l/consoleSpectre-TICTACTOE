@@ -9,7 +9,8 @@ namespace TICTACTOE_MIDTERM
     {
         
         PrintFormat printFormat = new PrintFormat();
-
+        Display display = new Display(); 
+        
         Game game;
         public Pvp(Game newGame)
         {
@@ -21,6 +22,8 @@ namespace TICTACTOE_MIDTERM
         int goalScore = 3;
         int round = 1;
         string playerWinner;
+        char currentPlayer = 'X';
+        bool isRunning = true;
 
         static char[,] board =
         {
@@ -131,30 +134,22 @@ namespace TICTACTOE_MIDTERM
             }
         }
 
-        public void pvp()
+        public void mainLoop(string play1, string play2)
         {
-            char currentPlayer = 'X';
-            bool isRunning = true;
-            
-            printFormat.print("Enter player1 name: ");
-            string player1 = Console.ReadLine();
-            printFormat.print("Enter player2 name: ");
-            string player2 = Console.ReadLine();
-
             while (isRunning)
             {
 
                 if (player1Score >= goalScore || player2Score >= goalScore)
                 {
 
-                    playerWinner = (player1Score > player2Score) ? player1 : player2;
+                    playerWinner = (player1Score > player2Score) ? play1 : play2;
                     break;
-                    
+
                 }
 
                 Console.Clear();
                 printFormat.printCenter($"ROUND {round}");
-                displayBoard(player1, player2);
+                displayBoard(play1, play2);
                 Console.WriteLine();
                 printFormat.printCenter($"{currentPlayer}'s turn");
                 printFormat.print("Enter coordinate to place move (0-8): ");
@@ -170,7 +165,7 @@ namespace TICTACTOE_MIDTERM
                     {
                         Console.Clear();
                         printFormat.printCenter($"ROUND {round}");
-                        displayBoard(player1, player2);
+                        displayBoard(play1, play2);
                         printFormat.printCenter($"{currentPlayer} wins!");
                         printFormat.print("Press any key to continue");
                         Console.ReadKey();
@@ -191,7 +186,7 @@ namespace TICTACTOE_MIDTERM
                     {
                         Console.Clear();
                         printFormat.printCenter($"ROUND {round}");
-                        displayBoard(player1, player2);
+                        displayBoard(play1, play2);
                         printFormat.printCenter("It's a draw!");
                         printFormat.print("Press any key to continue");
                         Console.ReadKey();
@@ -209,6 +204,18 @@ namespace TICTACTOE_MIDTERM
                 }
             }
 
+        }
+
+        public void pvp()
+        {
+            display.paddingTop();
+            printFormat.print("Enter player1 name: ");
+            string player1 = Console.ReadLine();
+            printFormat.print("Enter player2 name: ");
+            string player2 = Console.ReadLine();
+            
+            mainLoop(player1, player2);
+
             Console.Clear();
             displayBoard(player1, player2);
             printFormat.printCenter($"{playerWinner} WINS!!!");
@@ -218,8 +225,12 @@ namespace TICTACTOE_MIDTERM
             printFormat.printCenter("2.BACK TO GAME MENU");
             int choice = Convert.ToInt32(Console.ReadLine());
 
-            if (choice == 1) {
-                //GAME FUNCTION
+            if (choice == 1) 
+            {
+                player1Score = 0;
+                player2Score = 0;
+                round = 1;
+                mainLoop(player1, player2);
             }
             else if (choice == 2)
             {

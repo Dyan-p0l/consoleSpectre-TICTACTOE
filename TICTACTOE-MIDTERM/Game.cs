@@ -10,6 +10,7 @@ namespace TICTACTOE_MIDTERM
 
         PvComputer pvComp = new PvComputer();
         PrintFormat printFormat = new PrintFormat();
+        Display display = new Display();
         Pvp pvp;
         Menu menu;
 
@@ -22,9 +23,10 @@ namespace TICTACTOE_MIDTERM
         public void playGame()
         {
             Console.Clear();
+            display.paddingTop();
             printFormat.printCenter("1.Player vs. Player");
             printFormat.printCenter("2.Play with Computer");
-            printFormat.printCenter("3.Back to Menu");
+            printFormat.printCenter("3.Back to Main Menu");
             printFormat.print("Enter choice: ");
             int playChoice = Convert.ToInt32(Console.ReadLine());
             Console.Clear();

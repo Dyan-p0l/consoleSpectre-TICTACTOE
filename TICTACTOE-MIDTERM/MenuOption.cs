@@ -51,11 +51,10 @@ namespace TICTACTOE_MIDTERM
 
         public void Developers()
         {
-            printFormat.printCenter("DEVELOPERS OF THE GAME");
-            Console.WriteLine();
-            printFormat.printCenter("============================");
-
-            Console.WriteLine();
+            AnsiConsole.Write(
+            new FigletText("DEVS")
+            .Centered()
+            .Color(Color.Green));
 
             printFormat.printCenterGreen("ALLEN PAUL BELARMINO");
             printFormat.printCenterGreen("----------------------------");
@@ -85,8 +84,6 @@ namespace TICTACTOE_MIDTERM
             printFormat.printCenterYellow("game mechanics. Always exploring new");
             printFormat.printCenterYellow("technologies and innovative ideas.");
 
-            Console.WriteLine();
-            Console.WriteLine();
 
             printFormat.print("BACK TO MENU (PRESS ANY KEY)");
             Console.ReadKey();
