@@ -9,17 +9,19 @@ namespace TICTACTOE_MIDTERM
     {
 
         private MenuOption menuOption;
-
-        public Menu(MenuOption menuOption)
+        private Game game;
+        public Menu(MenuOption menuOption, Game game)
         {
             this.menuOption = menuOption;
-        }   
+            this.game = game;
+        }
+
+       
 
         public void displayMenu()
         {
 
             Display display = new Display();
-            Game game = new Game();
             PrintFormat printFormat = new PrintFormat();
 
             display.paddingTop();
