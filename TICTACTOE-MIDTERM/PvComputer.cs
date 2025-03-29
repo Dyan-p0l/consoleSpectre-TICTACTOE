@@ -1,6 +1,4 @@
 ﻿using Spectre.Console;
-using System;
-using System.Numerics;
 using TICTACTOE_MIDTERM.styling;
 
 
@@ -31,6 +29,7 @@ namespace TICTACTOE_MIDTERM
         char currentPlayer = 'X';
         bool isRunning = true;
         string comp = "Computer";
+
         static char[,] board =
         {
             { ' ', ' ', ' ' },
@@ -40,7 +39,6 @@ namespace TICTACTOE_MIDTERM
 
         void displayBoard(string player1)
         {
-
             var table = new Table();
             table.ShowRowSeparators();
             table.Title("[bold yellow]MAIN BOARD[/]");
@@ -189,12 +187,13 @@ namespace TICTACTOE_MIDTERM
             }
             return -1;
         }
-        public void mainLoop(string play1, int difficulty, char playerSymbol)
+        public void mainLoop(string play1, int difficulty, char playerSymbol, string diff)
         {
             
             while (isRunning)
             {
                 Console.Clear();
+                printFormat.printCenterGreen($"DIFFICULTY: {diff}");
                 displayBoard(play1);
                 if (player1Score >= goalScore || computerScore >= goalScore)
                 {
@@ -205,12 +204,34 @@ namespace TICTACTOE_MIDTERM
                 }
 
                 int move;
-
+                bool isValidMove;
+                
                 if (currentPlayer == playerSymbol)
                 {
-                    printFormat.printCenter($"{currentPlayer}'s turn");
-                    printFormat.print("Enter coordinate to place move (0-8): ");
-                    move = Convert.ToInt32(Console.ReadLine());
+
+                    do
+                    {
+                        printFormat.printCenter($"{currentPlayer}'s turn");
+                        printFormat.print("Enter coordinate to place move (0-8): ");
+                        check:
+                        string placeMove = Console.ReadLine();
+                        isValidMove = int.TryParse(placeMove, out move) && (move >= 0 && move <= 8);
+                        if (!isValidMove)
+                        {
+                            printFormat.printCenterRed("Invalid input!");
+                            printFormat.printCenterRed("Press any key to try again...");
+                            Console.ReadKey();
+                            Console.Clear();
+                            //RE RENDER SA BOARD IF SAYUP ANG INPUT MOVE
+                            printFormat.printCenterGreen($"DIFFICULTY: {diff}");
+                            displayBoard(play1);
+                            printFormat.printCenter($"{currentPlayer}'s turn");
+                            printFormat.print("Enter coordinate to place move (0-8): ");
+                            goto check;
+                        }   
+
+                    } while (!isValidMove);
+                    
 
                 }   
                 else
@@ -272,7 +293,9 @@ namespace TICTACTOE_MIDTERM
                 }
                 else
                 {
-                    printFormat.printCenter("Invalid move, try again.");
+                    printFormat.printCenter("Cell already occupied.");
+                    printFormat.print("Press any key to continue");
+                    Console.ReadKey();
                 }
             }
 
@@ -282,57 +305,133 @@ namespace TICTACTOE_MIDTERM
         {
 
             char playerSymbol = '\0';
+            bool isDiffValid, isValid;
+            bool isNotEmpty = true;
+            int choice;
+            int menChoice;
+            string player = "";
+            do
+            {
+                Console.Clear();
+                display.paddingTop();
+                printFormat.printCenterGreen("Enter difficulty level: ");
+                printFormat.printCenterGreen("1.EZ");
+                printFormat.printCenterGreen("2.MID FRFR");
+                printFormat.printCenterGreen("3.HARD FUCK");
+                printFormat.print("Enter choice: ");
+                string diffchoice = Console.ReadLine();
+                isDiffValid = int.TryParse(diffchoice, out choice) && (choice >= 1 && choice <= 3);
 
-            display.paddingTop();
-            printFormat.print("Enter player name: ");
-            string player = Console.ReadLine();
-            printFormat.printCenterGreen("Enter difficulty level: ");
-            printFormat.printCenterGreen("1.EZ");
-            printFormat.printCenterGreen("2.MID FRFR");
-            printFormat.printCenterGreen("3.HARD FUCK");
-            printFormat.print("Enter choice: ");
-            int choice = Convert.ToInt32(Console.ReadLine());
+                if (!isDiffValid)
+                {
+                    printFormat.printCenterRed("Invalid input!");
+                    printFormat.printCenterRed("Press any key to try again...");
+                    Console.ReadKey();
+                }
+                
+            } while (!isDiffValid);
+
             int difficulty = 0;
+            string diff= "";
             switch (choice)
             {
-                case 1: difficulty += 1; 
-                break;
-                case 2: difficulty += 2; 
-                break;
-                case 3: difficulty += 3; 
-                break;
+                case 1:
+                    difficulty += 1;
+                    diff += "EASY";
+                    break;
+                case 2:
+                    difficulty += 2;
+                    diff += "MODERATE";
+                    break;
+                case 3:
+                    difficulty += 3;
+                    diff += "HARD";
+                    break;
             }
-            Console.WriteLine();
-            printFormat.printCenter("Choose SYMBOL");
-            printFormat.printCenter("1. X");
-            printFormat.printCenter("2. O");
-            printFormat.print("Enter choice: ");
-            int symbol = Convert.ToInt32(Console.ReadLine());
+
+            int symbol = 0;
+            bool validSymbol;
+            do
+            {
+                Console.Clear();
+                printFormat.printCenterGreen($"DIFFICULTY: {diff}");
+                printFormat.print("Enter player name: ");
+                player += Console.ReadLine();
+
+                isNotEmpty = !string.IsNullOrEmpty(player);
+                if (!isNotEmpty)
+                {
+                    printFormat.printCenterRed("Field must not be empty");
+                    printFormat.printCenterRed("Press any key to try again...");
+                    Console.ReadKey();
+                    Console.Clear();
+
+                }
+                else
+                {
+                    Console.WriteLine();
+                    printFormat.printCenter("Choose SYMBOL");
+                    printFormat.printCenter("1. X");
+                    printFormat.printCenter("2. O");
+                    printFormat.print("Enter choice: ");
+                    check:
+                    string symbolChoice = Console.ReadLine();
+                    validSymbol = int.TryParse(symbolChoice, out symbol) && (symbol >= 1 && symbol <= 2);
+                    if (!validSymbol)
+                    {
+                        printFormat.printCenterRed("Invalid input!");
+                        printFormat.printCenterRed("Press any key to try again...");
+                        Console.ReadKey();
+                        Console.Clear();
+
+                        printFormat.printCenterGreen($"DIFFICULTY: {diff}");
+                        printFormat.print($"Enter player name: {player}");
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        printFormat.printCenter("Choose SYMBOL");
+                        printFormat.printCenter("1. X");
+                        printFormat.printCenter("2. O");
+                        printFormat.print("Enter choice: ");
+                        goto check;
+                    }
+                }
+
+            } while (!isNotEmpty);
 
             playerSymbol = (symbol == 1) ? 'X' : 'O';
             currentPlayer = playerSymbol;
             Console.Clear();
-            mainLoop(player, difficulty, playerSymbol);
+            mainLoop(player, difficulty, playerSymbol, diff);
+            
+            do
+            {
+                Console.Clear();
+                displayBoard(player);
+                printFormat.printCenter($"{playerWinner} WINS!!!");
+                Console.WriteLine();
+                printFormat.printCenter("THE GAME IS OVER");
+                Console.WriteLine();
+                printFormat.printCenter("1.Play again (Rematch)");
+                printFormat.printCenter("2.BACK TO GAME MENU");
+                printFormat.print("Enter choice: ");
+                string menuchoice = Console.ReadLine();
+                isValid = int.TryParse(menuchoice, out menChoice) && (menChoice >= 1 && menChoice <= 2);
+                if (!isValid)
+                {
+                    printFormat.printCenterRed("Invalid input!");
+                    printFormat.printCenterRed("Press any key to try again...");
+                    Console.ReadKey();
+                }
+            } while (!isValid);
 
-            Console.Clear();
-            displayBoard(player);
-            printFormat.printCenter($"{playerWinner} WINS!!!");
-            Console.WriteLine();
-            printFormat.printCenter("THE GAME IS OVER");
-            Console.WriteLine();
-            printFormat.printCenter("1.Play again (Rematch)");
-            printFormat.printCenter("2.BACK TO GAME MENU");
-            printFormat.print("Enter choice: ");
-            int menuchoice = Convert.ToInt32(Console.ReadLine());
-
-            if (menuchoice == 1)
+            if (menChoice == 1)
             {
                 player1Score = 0;
                 computerScore = 0;
                 round = 1;
-                mainLoop(player, difficulty, playerSymbol);
+                mainLoop(player, difficulty, playerSymbol, diff);
             }
-            else if (choice == 2)
+            else if (menChoice == 2)
             {
                 game.playGame();
             }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TICTACTOE-MIDTERM")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3bd4a034b48c5fa91a0102824e460d00dd6e9f98")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8dfd0d640bfc9192905491c864a28258abae7516")]
 [assembly: System.Reflection.AssemblyProductAttribute("TICTACTOE-MIDTERM")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TICTACTOE-MIDTERM")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

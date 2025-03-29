@@ -148,6 +148,8 @@ namespace TICTACTOE_MIDTERM
 
         public void mainLoop(string play1, string play2)
         {
+            bool isValid;
+            int move;
             while (isRunning)
             {
 
@@ -159,12 +161,22 @@ namespace TICTACTOE_MIDTERM
 
                 }
 
-                Console.Clear();
-                displayBoard(play1, play2);
-                Console.WriteLine();
-                printFormat.printCenter($"{currentPlayer}'s turn");
-                printFormat.print("Enter coordinate to place move (0-8): ");
-                int move = Convert.ToInt32(Console.ReadLine());
+                do
+                {
+                    Console.Clear();
+                    displayBoard(play1, play2);
+                    Console.WriteLine();
+                    printFormat.printCenter($"{currentPlayer}'s turn");
+                    printFormat.print("Enter coordinate to place move (0-8): ");
+                    string placeMove = Console.ReadLine();
+                    isValid = int.TryParse(placeMove, out move) && (move >= 0 && move <= 8); 
+                    if (!isValid)
+                    {
+                        printFormat.printCenterRed("Invalid move!!");
+                        printFormat.printCenterRed("Press any key to try again.");
+                        Console.ReadKey();
+                    }
+                } while (!isValid);
 
                 int row = move / 3;
                 int col = move % 3;
@@ -209,7 +221,10 @@ namespace TICTACTOE_MIDTERM
                 }
                 else
                 {
-                    printFormat.printCenter("Invalid move, try again.");
+                    printFormat.printCenter("Cell already occupied.");
+                    printFormat.print("Press any key to continue");
+                    Console.ReadKey();
+
                 }
             }
 
@@ -217,24 +232,71 @@ namespace TICTACTOE_MIDTERM
 
         public void pvp()
         {
+            bool isNotEmpty1, isNotEmpty12  = false;
+            string player1 = "", player2 = "";
+            bool isValid = true;
+            int choice;
+
+            do
+            {
+                display.paddingTop();
+                printFormat.print("Enter player1 (X) name: ");
+                player1 += Console.ReadLine();
+                isNotEmpty1 = !string.IsNullOrEmpty(player1);
+                if (!isNotEmpty1)
+                {
+                    printFormat.printCenterRed("Field must not be empty");
+                    printFormat.printCenterRed("Press any key to continue...");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    printFormat.print("Enter player2 (O) name: ");
+                    player2 += Console.ReadLine();
+                    check:
+                    isNotEmpty12 = !string.IsNullOrEmpty(player2);
+                    if (!isNotEmpty12)
+                    {
+
+                        printFormat.printCenterRed("Field must not be empty");
+                        printFormat.printCenterRed("Press any key to continue...");
+                        Console.ReadKey();
+                        Console.Clear();
+                        display.paddingTop();
+                        printFormat.print("Enter player1 (X) name: " + player1 + "\n");
+                        printFormat.print("Enter player2 (O) name: ");
+                        player2 += Console.ReadLine();
+                        goto check;
+                    }
+                }
+                Console.Clear();
+            } while (!isNotEmpty1 && !isNotEmpty12);
+
             display.paddingTop();
-            printFormat.print("Enter player1 (X) name: ");
-            string player1 = Console.ReadLine();
-            printFormat.print("Enter player2 (O) name: ");
-            string player2 = Console.ReadLine();
-            
+
             mainLoop(player1, player2);
 
-            Console.Clear();
-            displayBoard(player1, player2);
-            printFormat.printCenter($"{playerWinner} WINS!!!");
-            Console.WriteLine();
-            printFormat.printCenter("THE GAME IS OVER");
-            Console.WriteLine();
-            printFormat.printCenter("1.Play again (Rematch)");
-            printFormat.printCenter("2.BACK TO GAME MENU");
-            printFormat.print("Enter choice: ");
-            int choice = Convert.ToInt32(Console.ReadLine());
+            do
+            {
+
+                Console.Clear();
+                displayBoard(player1, player2);
+                printFormat.printCenter($"{playerWinner} WINS!!!");
+                Console.WriteLine();
+                printFormat.printCenter("THE GAME IS OVER");
+                Console.WriteLine();
+                printFormat.printCenter("1.Play again (Rematch)");
+                printFormat.printCenter("2.BACK TO GAME MENU");
+                printFormat.print("Enter choice: ");
+                string option = Console.ReadLine();
+                isValid  = int.TryParse(option, out choice) && (choice >= 1 && choice <= 2);
+                if (!isValid)
+                {
+                    printFormat.printCenterRed("Invalid input, try again.");
+                    printFormat.printCenterRed("Press any key to continue...");
+                    Console.ReadKey();
+                }
+            } while (!isValid);
 
             if (choice == 1) 
             {
