@@ -21,7 +21,7 @@ namespace TICTACTOE_MIDTERM
         int player2Score = 0;
         int goalScore = 3;
         int round = 1;
-        string playerWinner;
+        string playerWinner = "";
         char currentPlayer = 'X';
         bool isRunning = true;
 
@@ -47,7 +47,7 @@ namespace TICTACTOE_MIDTERM
             table.AddColumn(GetColoredSymbol(board[0, 0]))
              .AddColumn(GetColoredSymbol(board[0, 1]))
              .AddColumn(GetColoredSymbol(board[0, 2]));
-            table.BorderColor(Color.Chartreuse1);
+            table.BorderColor(Color.Yellow1);
             table.Border(TableBorder.Double);
             
             for (int i = 1; i < 3; i++)
@@ -64,7 +64,7 @@ namespace TICTACTOE_MIDTERM
             table2.ShowRowSeparators();
             table2.Title("[bold yellow]COORDINATES[/]");
             table2.AddColumn("0").AddColumn("1").AddColumn("2");
-            table2.BorderColor(Color.Chartreuse1);
+            table2.BorderColor(Color.Yellow1);
             table2.AddRow("3", "4", "5");
             table2.AddRow("6", "7", "8");
             table2.Border(TableBorder.Double);
@@ -94,7 +94,8 @@ namespace TICTACTOE_MIDTERM
             //PANEL SAME SA PANEL SA JAVA
             var panel = new Panel(grid)
             .BorderColor(Color.Blue)
-            .Border(BoxBorder.Double);
+            .Border(BoxBorder.Double)
+            .Header($"   [bold yellow]ROUND {round}[/]   ", Justify.Center);
 
             int screenWidth = Console.WindowWidth;
             int panelWidth = 85; // Adjust based on content width
@@ -159,7 +160,6 @@ namespace TICTACTOE_MIDTERM
                 }
 
                 Console.Clear();
-                printFormat.printCenter($"ROUND {round}");
                 displayBoard(play1, play2);
                 Console.WriteLine();
                 printFormat.printCenter($"{currentPlayer}'s turn");
@@ -175,9 +175,8 @@ namespace TICTACTOE_MIDTERM
                     if (CheckWin(currentPlayer))
                     {
                         Console.Clear();
-                        printFormat.printCenter($"ROUND {round}");
                         displayBoard(play1, play2);
-                        printFormat.printCenter($"{currentPlayer} wins!");
+                        printFormat.printCenter($"{currentPlayer} WINS THIS ROUND!");
                         printFormat.print("Press any key to continue");
                         Console.ReadKey();
 
@@ -196,9 +195,8 @@ namespace TICTACTOE_MIDTERM
                     else if (CheckDraw())
                     {
                         Console.Clear();
-                        printFormat.printCenter($"ROUND {round}");
                         displayBoard(play1, play2);
-                        printFormat.printCenter("It's a draw!");
+                        printFormat.printCenter("IT'S A DRAW FOR THIS ROUND!");
                         printFormat.print("Press any key to continue");
                         Console.ReadKey();
                         ResetBoard();
@@ -220,9 +218,9 @@ namespace TICTACTOE_MIDTERM
         public void pvp()
         {
             display.paddingTop();
-            printFormat.print("Enter player1 name: ");
+            printFormat.print("Enter player1 (X) name: ");
             string player1 = Console.ReadLine();
-            printFormat.print("Enter player2 name: ");
+            printFormat.print("Enter player2 (O) name: ");
             string player2 = Console.ReadLine();
             
             mainLoop(player1, player2);
@@ -230,10 +228,12 @@ namespace TICTACTOE_MIDTERM
             Console.Clear();
             displayBoard(player1, player2);
             printFormat.printCenter($"{playerWinner} WINS!!!");
-            printFormat.printCenter("Game Over");
             Console.WriteLine();
-            printFormat.printCenter("1.Play again");
+            printFormat.printCenter("THE GAME IS OVER");
+            Console.WriteLine();
+            printFormat.printCenter("1.Play again (Rematch)");
             printFormat.printCenter("2.BACK TO GAME MENU");
+            printFormat.print("Enter choice: ");
             int choice = Convert.ToInt32(Console.ReadLine());
 
             if (choice == 1) 

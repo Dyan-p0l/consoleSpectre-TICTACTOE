@@ -8,7 +8,7 @@ namespace TICTACTOE_MIDTERM
     internal class Game
     {
 
-        PvComputer pvComp = new PvComputer();
+        PvComputer pvComp;
         PrintFormat printFormat = new PrintFormat();
         Display display = new Display();
         Pvp pvp;
@@ -17,6 +17,7 @@ namespace TICTACTOE_MIDTERM
         public Game(MenuOption menuOption) 
         {
             pvp = new Pvp(this);
+            pvComp = new PvComputer(this);
             menu = new Menu(menuOption, this);
         }
 

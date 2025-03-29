@@ -6,13 +6,13 @@ namespace TICTACTOE_MIDTERM
 {
     internal class MenuOption
     {
-        private Menu menu;
+        private Menu? menu;
         Display display = new Display();
-        PrintFormat printFormat = new PrintFormat();    
-
+        PrintFormat printFormat = new PrintFormat();
+        
         public MenuOption()
         {
-            
+
         }
 
         public void SetMenu(Menu menu)
